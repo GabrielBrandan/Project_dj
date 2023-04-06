@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="text-center">Inicio de sesión</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="/inicio_de_seccion/" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                <label for="{{ form.username.id_for_label }}" class="form-label">Nombre de usuario:</label>
+                                <input type="text" name="username" class="form-control" required>
+                                <small>Ingrese su nombre de usuario</small>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña:</label>
+                                <input type="password" name="password" class="form-control" required>
+                                <small>Ingrese su contraseña</small>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                            </div>
+                        </form>
+                        {% if error %}
+                            <div class="alert alert-danger mt-3" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

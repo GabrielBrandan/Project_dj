@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="text-center mb-4">Bienvenido a Transportes Rurales</h1>
+                <p class="lead text-center mb-5">Encuentra el transporte que necesitas para tus viajes rurales</p>
+                <div class="text-center">
+                    <a href="{% url 'buscador_de_colectivos' %}" class="btn btn-primary me-3">Buscar Colectivos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

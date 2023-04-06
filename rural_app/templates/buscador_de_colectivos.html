@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center my-5">Busque su colectivo</h1>
+    <form method="GET" class="mb-5">
+        <div class="row">
+            <div class="col-sm-8 col-md-6 mx-auto">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Buscar" name="buscar" value="{{ request.GET.buscar }}">
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% if colectivos %}
+    <h2 class="my-5">Resultados de búsqueda:</h2>
+    <div class="row">
+        {% for colectivo in colectivos %}
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="card-text">
+                        <span class="fw-bold">Origen:</span> {{ colectivo.origen }}<br>
+                        <span class="fw-bold">Destino:</span> {{ colectivo.destino }}$<br>
+                        <span class="fw-bold">Empresa:</span> {{ colectivo.compania }}<br>
+                        <span class="fw-bold">Precio:</span> {{ colectivo.precio }}$<br>
+                        <span class="fw-bold d-md-inline">Hora de salida:</span> <span class="d-none d-md-inline">{{ colectivo.hora_salida }}</span><br>
+                        <span class="fw-bold d-md-inline">Dias de circulacion:</span> <span class="d-none d-md-inline">{{ colectivo.dias_de_circulacion }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="my-5">No se encontraron resultados.</p>
+    {% endif %}
+    
+</div>
+
+{% endblock %}

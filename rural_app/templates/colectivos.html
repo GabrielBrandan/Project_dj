@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/colectivos.css' %}">
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <h2 class="text-center">Colectivos del usuario</h2>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Origen</th>
+                  <th scope="col">Destino</th>
+                  <th scope="col">Compañía</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Días de circulación</th>
+                  <th scope="col">Hora de salida</th>
+                  <th scope="col">Hora de llegada</th>
+                  <th scope="col">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for colectivo in colectivos %}
+                <tr>
+                  <td>{{ colectivo.origen }}</td>
+                  <td>{{ colectivo.destino }}</td>
+                  <td>{{ colectivo.compania }}</td>
+                  <td>{{ colectivo.precio }}$</td>
+                  <td>{{ colectivo.dias_de_circulacion }}</td>
+                  <td>{{ colectivo.hora_salida }}</td>
+                  <td>{{ colectivo.hora_llegada }}</td>
+                  <td>
+                    <form action="{% url 'eliminar_colectivo' colectivo.id %}" method="POST">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
